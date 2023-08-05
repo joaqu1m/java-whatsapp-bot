@@ -1,17 +1,45 @@
 package manuall;
+import manuall.dao.ActorJdbcDAO;
+import manuall.dto.Actor;
+import manuall.services.Chatbot;
+
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
+import java.util.List;
 import java.util.Properties;
 public class Main {
-    public static void main(String[] args) throws InterruptedException, IOException {
 
-        Properties prop = new Properties();
-        InputStream input = new FileInputStream("src/main/resources/application.properties");
+    private static final Properties properties;
 
-        prop.load(input);
+    static {
+        properties = new Properties();
+        try {
+            properties.load(new FileInputStream("src/main/resources/application.properties"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-        System.out.println(prop.getProperty("mocknumber"));
-        Chatbot.sendMessage("Hello World!", prop.getProperty("mocknumber"));
+    public static Properties getProperties() {
+        return properties;
+    }
+
+    public static void main(String[] args) throws InterruptedException, IOException, UnsupportedFlavorException {
+
+//        ActorJdbcDAO actorJdbcDAO = new ActorJdbcDAO();
+//
+//        List<Actor> actorList = actorJdbcDAO.getAll();
+//        for (Actor actor : actorList) {
+//            System.out.println(actor);
+//        }
+
+        Thread.sleep(1000);
+
+//        Chatbot.debug();
+        
+        Chatbot chatbot = new Chatbot();
+        chatbot.readMessages();
+//        Chatbot.sendMessage("Olá, bom dia! Eu sou o Manuel, o assistente virtual da Manuall. Gostaria de saber se você necessita de alguma ajuda.", properties.getProperty("mocknumber"), true);
     }
 }
