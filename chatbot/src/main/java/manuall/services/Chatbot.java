@@ -18,15 +18,8 @@ public class Chatbot {
     static Robot bot;
     private CRM crmSystem;
 
-    public Chatbot() {
-        // Default to PrestadorCRM or whatever you want
-        this.crmSystem = new PrestadorCRM();
-    }
     public Chatbot(CRM crm) {
         this.crmSystem = crm;
-    }
-    public void someInstanceMethod() {
-        this.crmSystem.iniciarProcesso();
     }
 
     static {
@@ -83,9 +76,6 @@ public class Chatbot {
 
                     this.crmSystem.iniciarProcesso();
 
-                    // Executa as ações de CRM
-//                    sendMessage("", Main.getProperties().getProperty("mocknumber"), false);
-
                     returnToTyping();
                     closeCurrentChat();
 
@@ -118,8 +108,6 @@ public class Chatbot {
         Thread.sleep(100);
 
         String[] clipboardResult = toolkit.getSystemClipboard().getData(DataFlavor.stringFlavor).toString().split("\n");
-
-        System.out.println(clipboardResult);
 
         if (clipboardResult.length - 2 > 2) {
             clipboardResult = Arrays.copyOfRange(clipboardResult, 2, clipboardResult.length - 2);

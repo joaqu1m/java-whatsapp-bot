@@ -2,6 +2,7 @@ package manuall;
 import manuall.dao.ActorJdbcDAO;
 import manuall.dto.Actor;
 import manuall.services.Chatbot;
+import manuall.services.ContratanteCRM;
 
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.FileInputStream;
@@ -34,11 +35,7 @@ public class Main {
 //            System.out.println(actor);
 //        }
 
-        Thread.sleep(1000);
-
-//        Chatbot.debug();
-        
-        Chatbot chatbot = new Chatbot();
+        Chatbot chatbot = new Chatbot(new ContratanteCRM());
         chatbot.readMessages();
 //        Chatbot.sendMessage("Olá, bom dia! Eu sou o Manuel, o assistente virtual da Manuall. Gostaria de saber se você necessita de alguma ajuda.", properties.getProperty("mocknumber"), true);
     }
